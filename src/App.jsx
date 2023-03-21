@@ -1,12 +1,22 @@
+import { range } from 'd3';
+import React from 'react';
 import './App.css';
-import { SmileyFace, SmileyFaceTweak } from './components';
+import { SmileyFace } from './components';
+
+const array = range(6 * 3);
 
 function App() {
   return (
     <div className='App'>
-      <SmileyFace />
-      <br />
-      <SmileyFaceTweak />
+      {array.map((ele, i) => {
+        return (
+          <React.Fragment key={i}>
+            <SmileyFace />
+          </React.Fragment>
+        );
+      })}
+
+      {/* <SmileyFaceTweak /> */}
     </div>
   );
 }
