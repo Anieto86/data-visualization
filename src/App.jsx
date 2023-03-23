@@ -1,13 +1,14 @@
 import { range } from 'd3';
 import React from 'react';
 import './App.css';
-import { SmileyFace } from './components';
+import { CssNamedColors, SmileyFace } from './components';
 
-const array = range(6 * 3);
+const array = range(5 * 3);
 
 function App() {
   return (
     <div className='App'>
+      <CssNamedColors />
       {array.map((ele, i) => {
         return (
           <React.Fragment key={i}>

@@ -31,8 +31,16 @@ const SmileyFaceTweak = () => {
           stroke-width={strokeWidth}
         />
         {/* <rect width='100%' height='100%' fill='red' stroke-width="5"/> */}
-				<ellipse cx="75" cy="75" rx="20" ry="5" stroke="red" fill="red" stroke-width="5"/>
-				
+        <ellipse
+          cx='75'
+          cy='75'
+          rx='20'
+          ry='5'
+          stroke='red'
+          fill='red'
+          stroke-width='5'
+        />
+
         <circle cx={-eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
 
         <circle cx={+eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
