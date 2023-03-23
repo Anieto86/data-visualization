@@ -7,13 +7,35 @@ export const UseFetch =  (URL) => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    fetch(URL)
-      .then((res) => res.text())
-      .then((data) => setData(data))
-      .catch((err) => setError(err))
-			.finally(()=> setLoading(false))
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(URL);
+        const data = await response.text();
+        setData(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	return {data, loading, error}
-}
+    fetchData();
+  }, [URL]);
+
+  return { data, loading, error };
+};
+    
+    
+
+
+
+//     fetch(URL)
+//       .then((res) => res.text())
+//       .then((data) => setData(data))
+//       .catch((err) => setError(err))
+// 			.finally(()=> setLoading(false))
+//   }, []);
+
+// 	return {data, loading, error}
+// }
 
