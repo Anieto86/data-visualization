@@ -1,33 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-export const UseFetch =  (URL) => {
-
+export const UseFetch = (URL) => {
   const [data, setData] = useState(null);
-	const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch(URL);
+      const data = await response.text();
+      setData(data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [URL]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(URL);
-        const data = await response.text();
-        setData(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
-  }, [URL]);
+  }, [fetchData]);
 
   return { data, loading, error };
 };
-    
-    
-
-
 
 //     fetch(URL)
 //       .then((res) => res.text())
@@ -38,4 +33,3 @@ export const UseFetch =  (URL) => {
 
 // 	return {data, loading, error}
 // }
-
