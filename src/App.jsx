@@ -8,8 +8,7 @@ const array = range(5 * 3);
 function App() {
   return (
     <div className='App'>
-      <MouseFollower />
-      <CssNamedColors />
+     
       {array.map((ele, i) => {
         return (
           <React.Fragment key={i}>
@@ -19,6 +18,8 @@ function App() {
       })}
 
       {/* <SmileyFaceTweak /> */}
+      <MouseFollower />
+      <CssNamedColors />
     </div>
   );
 }
