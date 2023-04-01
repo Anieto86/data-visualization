@@ -11,6 +11,7 @@ const CssNamedColors = () => {
 
   const parseData = d3.csvParse(data);
 
+
   const width = 1000;
   const height = 500;
   const centerX = width / 2;

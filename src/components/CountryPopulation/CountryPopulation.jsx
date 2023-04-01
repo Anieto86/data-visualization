@@ -1,37 +1,44 @@
-import * as d3 from 'd3';
-// import { useFetch } from '../../hooks/useFetch';
-import { scaleBand, scaleLinear } from 'd3';
-import { useState ,useEffect } from 'react';
-
+import * as d3 from 'd3';;
+import {  useEffect, useState } from 'react';
+import { useFetch } from '../../hooks/useFetch/useFetch';
 
 const CountryPopulation = () => {
-  const [data, setData] = useState()
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/7e41de1aa3c479125dc9ffbf78e6e7bf/raw/605c54080c7a93a417a3cea93fd52e7550e76500/UN_Population_2019.csv`;
+
+  const { data, loading, error } = useFetch(CSVURL);
+  const [csvData, setCsvData] = useState([]);
 
   useEffect(() => {
     const row = (d) => {
       d.Population = +d['2020'];
       return d;
     };
-    d3.csv(CSVURL, row).then(setData);
-  }, []);
 
-  if (!data) return <div>Loading...</div>;
+    if (data) {
+      const parsedData = d3.csvParse(data, row);
+      setCsvData(parsedData.slice(0, 10));
+    }
+  }, [data]);
+
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   const width = 1000;
   const height = 500;
   const yScale = d3
     .scaleBand()
-    .domain(data.map((d) => d.Country))
+    .domain(csvData.map((d) => d.Country))
     .range([0, height]);
 
-  const xScale = d3.scaleLinear()
-  .domain([0, d3.max(data, (d) => d.Population)])
-  .range([0, width]);
+  const xScale = d3
+    .scaleLinear()
+    .domain([0, d3.max(csvData, (d) => d.Population)])
+    .range([0, width]);
 
   return (
     <svg width={width} height={height}>
-      {data.map((d, i) => {
+      {csvData?.map((d, i) => {
         return (
           <rect
             key={d.Country}
