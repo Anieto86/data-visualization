@@ -28,8 +28,6 @@ const CountryPopulation = () => {
   const innerWidth = width - margin.left - margin.right
   const innerHeight = height - margin.top - margin.bottom
 
-
-
   const yScale = d3
     .scaleBand()
     .domain(csvData.map((d) => d.Country))
@@ -40,9 +38,19 @@ const CountryPopulation = () => {
     .domain([0, d3.max(csvData, (d) => d.Population)])
     .range([0, innerWidth]);
 
+
   return (
     <svg width={width} height={height}>
      <g transform={`translate(${margin.left},${margin.top})`}>
+     {xScale.ticks().map(tickValue => (
+      <line
+        x1={xScale(tickValue)}
+        y1={0}
+        x2={xScale(tickValue)}
+        y2={innerHeight}
+        stroke="black"
+      />
+     ))}
       {csvData?.map((d, i) => {
         return (
           <rect
