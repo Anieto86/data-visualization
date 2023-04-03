@@ -11,7 +11,6 @@ const CssNamedColors = () => {
 
   const parseData = d3.csvParse(data);
 
-
   const width = 1000;
   const height = 500;
   const centerX = width / 2;
@@ -20,7 +19,9 @@ const CssNamedColors = () => {
   const pieArc = arc().innerRadius(pieRadius).outerRadius(width);
   const colorPie = pie().value(1);
 
-  const message = `Number of rows: ${parseData.length}, Number of columns: ${parseData.columns.length}, 
+  const message = `Number of rows: ${parseData.length}, Number of columns: ${
+    parseData.columns.length
+  }, 
    Data size ${Math.round(data?.length / 1024) + ' KB'}`;
 
   return (
@@ -29,13 +30,9 @@ const CssNamedColors = () => {
       <pre id='message-container'>{message}</pre>
       <svg width={width} height={height}>
         <g transform={`translate(${centerX}, ${centerY})`}>
-          {colorPie(parseData).map((d,i) => {
+          {colorPie(parseData).map((d, i) => {
             return (
-              <path
-                key={i}
-                fill={d.data['RGB hex value']}
-                d={pieArc(d)}
-              />
+              <path key={i} fill={d.data['RGB hex value']} d={pieArc(d)} />
             );
           })}
         </g>
