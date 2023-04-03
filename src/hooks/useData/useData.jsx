@@ -7,8 +7,8 @@ export const useData = (CSVURL) => {
 
   useEffect(() => {
     const row = (d) => {
-      d.Population = +d['2020'];
-      return d;
+      d.Population = (+d['2020'] * 1000)
+      return d
     };
     d3.csv(CSVURL, row).then((data) => setData(data.slice(0, 10)));
   }, []);

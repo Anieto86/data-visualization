@@ -3,6 +3,7 @@ import { useData } from '../../hooks';
 import AxisBottom from '../AxisBottom/AxisBottom';
 import AxisLeft from '../AxisLeft/AxisLeft';
 import Marks from '../Marks/Marks';
+import './styles.css';
 
 const CountryPopulation = () => {
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/7e41de1aa3c479125dc9ffbf78e6e7bf/raw/UN_Population_2019.csv`;
@@ -13,9 +14,10 @@ const CountryPopulation = () => {
 
   const width = 1000;
   const height = 500;
-  const margin = { top: 20, right: 20, bottom: 20, left: 200 };
+  const margin = { top: 20, right: 30, bottom: 60, left: 220 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
+  const axisBottomOffset = 50
 
   const yValue = (d) => d.Country;
   const xValue = (d) => d.Population;
@@ -23,7 +25,8 @@ const CountryPopulation = () => {
   const yScale = d3
     .scaleBand()
     .domain(csvData.map(yValue))
-    .range([0, innerHeight]);
+    .range([0, innerHeight])
+    .paddingInner(0.2);
 
   const xScale = d3
     .scaleLinear()
@@ -33,8 +36,16 @@ const CountryPopulation = () => {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
-        <AxisBottom xScale={xScale} innerHeight={innerHeight} />
+        <AxisBottom xScale={xScale} innerHeight={innerHeight} tickFormat={d3.format(".2s")} />
         <AxisLeft yScale={yScale} />
+        <text
+          className='axis-label'
+          text-anchor='middle'
+          x={innerWidth / 2}
+          y={innerHeight + axisBottomOffset}
+        >
+          Top 10 Countries Population
+        </text>
         <Marks
           csvData={csvData}
           xScale={xScale}
