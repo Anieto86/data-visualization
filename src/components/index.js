@@ -1,3 +1,4 @@
+export { default as AxisBottom } from './AxisBottom/AxisBottom';
 export * from './BackgroundCircle/BackgroundCircle';
 export { default as CountryPopulation } from './CountryPopulation/CountryPopulation';
 export { default as CssNamedColors } from './CssNamedColors/CssNamedColors';

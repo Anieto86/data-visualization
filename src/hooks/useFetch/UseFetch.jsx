@@ -8,7 +8,8 @@ export const useFetch = (URL) => {
   const fetchData = useCallback(async () => {
     try {
       const response = await fetch(URL);
-      const data = await response.text();
+ 
+      const data = await response.text()
       setData(data);
     } catch (error) {
       setError(error);
