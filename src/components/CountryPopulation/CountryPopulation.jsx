@@ -24,7 +24,7 @@ const CountryPopulation = () => {
 
   const width = 1000;
   const height = 500;
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const margin = { top: 20, right: 20, bottom: 20, left: 200 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
@@ -44,10 +44,25 @@ const CountryPopulation = () => {
         {xScale.ticks().map((tickValue) => (
           <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
             <line y2={innerHeight} stroke='black' />
-            <text style={{ textAnchor: 'middle' }} dy='.71em' y={innerHeight + 3}>
+            <text
+              style={{ textAnchor: 'middle' }}
+              dy='.71em'
+              y={innerHeight + 3}
+            >
               {tickValue}
             </text>
           </g>
+        ))}
+        {yScale.domain().map((tickValue) => (
+          <text
+            key={tickValue}
+            style={{ textAnchor: 'end' }}
+            dy='.32em'
+            x='-9'
+            y={yScale(tickValue) + yScale.bandwidth() / 2}
+          >
+            {tickValue}
+          </text>
         ))}
         {csvData?.map((d, i) => {
           return (
