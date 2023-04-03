@@ -24,9 +24,9 @@ const CountryPopulation = () => {
 
   const width = 1000;
   const height = 500;
-  const margin = {top:20, right:20, bottom:20, left:20}
-  const innerWidth = width - margin.left - margin.right
-  const innerHeight = height - margin.top - margin.bottom
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
 
   const yScale = d3
     .scaleBand()
@@ -38,30 +38,28 @@ const CountryPopulation = () => {
     .domain([0, d3.max(csvData, (d) => d.Population)])
     .range([0, innerWidth]);
 
-
   return (
     <svg width={width} height={height}>
-     <g transform={`translate(${margin.left},${margin.top})`}>
-     {xScale.ticks().map(tickValue => (
-      <line
-        x1={xScale(tickValue)}
-        y1={0}
-        x2={xScale(tickValue)}
-        y2={innerHeight}
-        stroke="black"
-      />
-     ))}
-      {csvData?.map((d, i) => {
-        return (
-          <rect
-            key={d.Country}
-            x={0}
-            y={yScale(d.Country)}
-            width={xScale(d.Population)}
-            height={yScale.bandwidth()}
-          />
-        );
-      })}
+      <g transform={`translate(${margin.left},${margin.top})`}>
+        {xScale.ticks().map((tickValue) => (
+          <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
+            <line y2={innerHeight} stroke='black' />
+            <text style={{ textAnchor: 'middle' }} dy='.71em' y={innerHeight + 3}>
+              {tickValue}
+            </text>
+          </g>
+        ))}
+        {csvData?.map((d, i) => {
+          return (
+            <rect
+              key={d.Country}
+              x={0}
+              y={yScale(d.Country)}
+              width={xScale(d.Population)}
+              height={yScale.bandwidth()}
+            />
+          );
+        })}
       </g>
     </svg>
   );
