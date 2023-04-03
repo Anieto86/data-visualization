@@ -17,8 +17,8 @@ const CountryPopulation = () => {
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
 
-  const yValue = (d) => d.Country
-  const xValue = (d) => d.Population
+  const yValue = (d) => d.Country;
+  const xValue = (d) => d.Population;
 
   const yScale = d3
     .scaleBand()
@@ -35,7 +35,13 @@ const CountryPopulation = () => {
       <g transform={`translate(${margin.left},${margin.top})`}>
         <AxisBottom xScale={xScale} innerHeight={innerHeight} />
         <AxisLeft yScale={yScale} />
-        <Marks csvData={csvData} xScale={xScale} yScale={yScale} yValue={yValue} xValue={xValue}/>
+        <Marks
+          csvData={csvData}
+          xScale={xScale}
+          yScale={yScale}
+          yValue={yValue}
+          xValue={xValue}
+        />
       </g>
     </svg>
   );
