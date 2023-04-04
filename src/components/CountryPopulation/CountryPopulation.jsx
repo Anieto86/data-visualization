@@ -52,6 +52,7 @@ const CountryPopulation = () => {
           yScale={yScale}
           yValue={yValue}
           xValue={xValue}
+          tickFormat={d3.format(".2s")}
         />
       </g>
     </svg>

@@ -31,11 +31,17 @@ const CssNamedColors = () => {
       <svg width={width} height={height}>
         <g transform={`translate(${centerX}, ${centerY})`}>
           {colorPie(parseData).map((d, i) => {
+          
             return (
+              <g key={i}>
               <path key={i} fill={d.data['RGB hex value']} d={pieArc(d)} />
+              <title>{d.data['Keyword']}</title>
+              </g>
             );
+            
           })}
         </g>
+     
       </svg>
     </>
   );

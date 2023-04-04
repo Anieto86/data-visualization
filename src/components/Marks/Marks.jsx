@@ -1,5 +1,5 @@
 import './style.css';
-const Marks = ({ csvData, xScale, yScale, yValue, xValue }) =>
+const Marks = ({ csvData, xScale, yScale, yValue, xValue ,tickFormat }) =>
   csvData?.map((d) => {
     return (
       <rect
@@ -10,7 +10,7 @@ const Marks = ({ csvData, xScale, yScale, yValue, xValue }) =>
         width={xScale(xValue(d))}
         height={yScale.bandwidth()}
       >
-        <title>{xValue(d)}</title>
+        <title>{tickFormat(xValue(d))}</title>
       </rect>
     );
   });
