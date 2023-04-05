@@ -9,8 +9,13 @@ export const useData = (CSVURL) => {
       d.Population = +d['2020'] * 1000;
       return d;
     };
-    d3.csv(CSVURL, row).then((data) => setData(data.slice(0, 10)));
-  }, []);
+      const fetchData = async () => {
+        const data = await d3.csv(CSVURL, row);
+        setData(data);
+      };
+  
+      fetchData();
+    }, [CSVURL]);
 
-  return { csvData };
+  return { csvData  };
 };

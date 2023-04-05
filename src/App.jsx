@@ -4,6 +4,7 @@ import './App.css';
 import {
   CountryPopulation,
   CssNamedColors,
+  Iris,
   MouseFollower,
   SmileyFace,
 } from './components';
@@ -25,6 +26,7 @@ function App() {
       <MouseFollower />
       <CssNamedColors />
       <CountryPopulation />
+      <Iris/>
     </div>
   );
 }

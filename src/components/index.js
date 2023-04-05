@@ -4,6 +4,7 @@ export * from './BackgroundCircle/BackgroundCircle';
 export { default as CountryPopulation } from './CountryPopulation/CountryPopulation';
 export { default as CssNamedColors } from './CssNamedColors/CssNamedColors';
 export * from './Eyes/Eyes';
+export { default as Iris } from './Iris/Iris';
 export { default as Marks } from './Marks/Marks';
 export { default as MouseFollower } from './MouseFollower/MouseFollower';
 export * from './Mouth';

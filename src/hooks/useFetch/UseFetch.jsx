@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import * as d3 from 'd3';
 
 export const useFetch = (URL) => {
   const [data, setData] = useState(null);
@@ -7,10 +8,13 @@ export const useFetch = (URL) => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch(URL);
- 
-      const data = await response.text()
-      setData(data);
+      // const response = await fetch(URL);
+      // const parseData = await response.text()
+      // const csvData = d3.csvParse(parseData);
+      // setData(csvData);
+
+      const response = await d3.csv(URL);
+      setData(response);
     } catch (error) {
       setError(error);
     } finally {
@@ -22,7 +26,7 @@ export const useFetch = (URL) => {
     fetchData();
   }, [fetchData]);
 
-  return { data, loading, error };
+  return { data, loading, error , setData };
 };
 
 //     fetch(URL)

@@ -12,6 +12,8 @@ const CountryPopulation = () => {
 
   if (!csvData) return <div>Loading...</div>;
 
+  const topTenCountries = csvData.slice(0, 10)
+
   const width = 1000;
   const height = 500;
   const margin = { top: 20, right: 30, bottom: 60, left: 220 };
@@ -24,13 +26,13 @@ const CountryPopulation = () => {
 
   const yScale = d3
     .scaleBand()
-    .domain(csvData.map(yValue))
+    .domain(topTenCountries.map(yValue))
     .range([0, innerHeight])
     .paddingInner(0.2);
 
   const xScale = d3
     .scaleLinear()
-    .domain([0, d3.max(csvData, xValue)])
+    .domain([0, d3.max(topTenCountries, xValue)])
     .range([0, innerWidth]);
 
   return (
@@ -40,14 +42,14 @@ const CountryPopulation = () => {
         <AxisLeft yScale={yScale} />
         <text
           className='axis-label'
-          text-anchor='middle'
+          textAnchor='middle'
           x={innerWidth / 2}
           y={innerHeight + axisBottomOffset}
         >
           Top 10 Countries Population
         </text>
         <Marks
-          csvData={csvData}
+          csvData={topTenCountries}
           xScale={xScale}
           yScale={yScale}
           yValue={yValue}
