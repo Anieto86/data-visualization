@@ -2,8 +2,9 @@ import './style.css';
 const Marks = ({ csvData, xScale, yScale, yValue, xValue ,tickFormat }) =>
   csvData?.map((d) => {
     return (
+      <g className='marks'>
       <rect
-        className='marks'
+      
         key={yValue(d)}
         x={0}
         y={yScale(yValue(d))}
@@ -12,6 +13,7 @@ const Marks = ({ csvData, xScale, yScale, yValue, xValue ,tickFormat }) =>
       >
         <title>{tickFormat(xValue(d))}</title>
       </rect>
+      </g>
     );
   });
 

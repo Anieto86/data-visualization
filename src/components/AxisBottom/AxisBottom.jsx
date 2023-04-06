@@ -1,6 +1,6 @@
 import './style.css';
 
-const AxisBottom = ({ xScale, innerHeight, tickFormat}) =>
+const AxisBottom = ({ xScale, innerHeight, tickFormat, tickOffset = 3}) =>
   xScale.ticks().map((tickValue) => (
     <g
       className='tick'
@@ -8,7 +8,7 @@ const AxisBottom = ({ xScale, innerHeight, tickFormat}) =>
       transform={`translate(${xScale(tickValue)},0)`}
     >
       <line y2={innerHeight} />
-      <text dy='.71em' y={innerHeight + 3}>
+      <text dy='.71em' y={innerHeight + tickOffset}>
         {tickFormat(tickValue)}
        
       </text>
