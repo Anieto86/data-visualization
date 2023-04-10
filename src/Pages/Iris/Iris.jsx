@@ -1,9 +1,9 @@
 import { csv, extent, format, scaleLinear } from 'd3';
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks';
-import AxisBottom from '../AxisBottom/AxisBottom';
-import AxisLeftPlot from '../AxisLeftPlot/AxisLeftPlot';
-import PlotMarks from '../PlotMarks/PlotMarks';
+import AxisBottom from '../../components/AxisBottom/AxisBottom';
+import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
+import PlotMarks from '../../components/PlotMarks/PlotMarks';
 import './style.css';
 import { Link } from 'react-router-dom';
 

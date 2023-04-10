@@ -7,7 +7,7 @@ import {
   Iris,
   MouseFollower,
   SmileyFace,
-} from './components';
+} from './Pages';
 
 const array = range(5 * 3);
 
@@ -21,8 +21,7 @@ function App() {
           </React.Fragment>
         );
       })}
-
-      {/* <SmileyFaceTweak /> */}
+      <SmileyFaceTweak />
       <MouseFollower />
       <CssNamedColors />
       <CountryPopulation />

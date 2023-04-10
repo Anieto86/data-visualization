@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import { useData } from '../../hooks';
-import AxisBottom from '../AxisBottom/AxisBottom';
-import AxisLeft from '../AxisLeft/AxisLeft';
-import Marks from '../Marks/Marks';
+import AxisBottom from '../../components/AxisBottom/AxisBottom';
+import AxisLeft from '../../components/AxisLeft/AxisLeft';
+import Marks from '../../components/Marks/Marks';
 import './styles.css';
 
 const CountryPopulation = () => {
