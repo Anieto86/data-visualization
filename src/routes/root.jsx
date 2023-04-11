@@ -22,6 +22,9 @@ export default function Root() {
             <li>
               <Link to={`Iris`}>Iris</Link>
             </li>
+            <li>
+              <Link to={`LineChart`}>Line Chart</Link>
+            </li>
           </ul>
         </nav>
 

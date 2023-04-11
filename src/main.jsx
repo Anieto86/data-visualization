@@ -1,9 +1,8 @@
+import { range } from 'd3';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { range } from 'd3';
-import App from './App';
-import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
 import {
   CountryPopulation,
   CssNamedColors,
@@ -11,6 +10,7 @@ import {
   MouseFollower,
   SmileyFace,
   SmileyFaceTweak,
+  LineChart
 } from './Pages';
 import Root from './routes/root';
 
@@ -33,6 +33,7 @@ const router = createBrowserRouter([
   { path: '/CssNamedColors', element: <CssNamedColors /> },
   { path: '/CountryPopulation', element: <CountryPopulation /> },
   { path: '/Iris', element: <Iris /> },
+  { path: '/LineChart', element: <LineChart /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

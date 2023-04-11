@@ -1,6 +1,6 @@
 import './style.css';
 
-const AxisBottom = ({ xScale, innerHeight, tickFormat, tickOffset = 3}) =>
+const AxisBottom = ({  xScale, innerHeight, tickFormat, tickOffset = 3 }) =>
   xScale.ticks().map((tickValue) => (
     <g
       className='tick'

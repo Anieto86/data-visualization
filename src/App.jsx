@@ -14,7 +14,7 @@ const array = range(5 * 3);
 function App() {
   return (
     <div className='App'>
-      {array.map((ele, i) => {
+      {/* {array.map((ele, i) => {
         return (
           <React.Fragment key={i}>
             <SmileyFace />
@@ -25,7 +25,7 @@ function App() {
       <MouseFollower />
       <CssNamedColors />
       <CountryPopulation />
-      <Iris/>
+      <Iris/> */}
     </div>
   );
 }

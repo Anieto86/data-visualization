@@ -1,4 +1,4 @@
-import { csv, extent, format, scaleLinear } from 'd3';
+import { csv, extent, format, scaleLinear, scaleTime , timeFormat} from 'd3';
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
@@ -7,17 +7,15 @@ import PlotMarks from '../../components/PlotMarks/PlotMarks';
 import './style.css';
 import { Link } from 'react-router-dom';
 
-const Iris = () => {
-  const CSVURL = `https://gist.githubusercontent.com/Anieto86/25c944aa3804c9b498b4e4b973f11fea/raw/iris.csv`;
+const LineChart = () => {
+  const CSVURL = `https://gist.githubusercontent.com/curran/90240a6d88bdb1411467b21ea0769029/raw/7d4c3914cc6a29a7f5165f7d5d82b735d97bcfe4/week_temperature_sf.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
 
   useEffect(() => {
     const row = (d) => {
-      d.sepal_length = +d.sepal_length;
-      d.sepal_width = +d.sepal_width;
-      d.petal_length = +d.petal_length;
-      d.petal_width = +d.petal_width;
+      d.temperature = +d.temperature;
+      d.timestamp = new Date(d.timestamp);
       return d;
     };
 
@@ -34,20 +32,19 @@ const Iris = () => {
   const innerHeight = height - margin.top - margin.bottom;
   const xAxisLabelOffset = 50;
   const yAxisLabelOffset = 40;
-  // const tickOffset =
 
-  const yValue = (d) => d.sepal_width;
-  const xValue = (d) => d.sepal_length;
+  const xValue = d => d.timestamp;
+  const xAxisLabel = 'Time';
 
-  const xAxisLabel = 'Sepal length';
-  const yAxisLabel = 'Sepal Width';
+  const yValue = d => d.temperature;
+  const yAxisLabel = 'Temperature';
 
-  const xScale = scaleLinear()
+  const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice();
 
-  const yScale = scaleLinear()
+    const yScale = scaleLinear()
     .domain(extent(data, yValue))
     .range([innerHeight, 0])
     .nice();
@@ -59,15 +56,10 @@ const Iris = () => {
           <AxisBottom
             xScale={xScale}
             innerHeight={innerHeight}
-            tickFormat={format('.2s')}
-            tickOffset={5}
+            tickFormat={timeFormat('%a')}
+            tickOffset={9}
           />
-          <AxisLeftPlot
-            yScale={yScale}
-            innerWidth={innerWidth}
-            yAxisLabel={yAxisLabel}
-            tickOffset={5}
-          />
+       
           <text
             className='axis-label'
             textAnchor='middle'
@@ -77,6 +69,12 @@ const Iris = () => {
           >
             {yAxisLabel}
           </text>
+          <AxisLeftPlot
+            yScale={yScale}
+            innerWidth={innerWidth}
+            yAxisLabel={yAxisLabel}
+            tickOffset={5}
+          />
           <text
             className='axis-label'
             textAnchor='middle'
@@ -85,7 +83,6 @@ const Iris = () => {
           >
             {xAxisLabel}
           </text>
-
           <PlotMarks
             data={data}
             xScale={xScale}
@@ -93,7 +90,7 @@ const Iris = () => {
             yValue={yValue}
             xValue={xValue}
             tickFormat={format('.2s')}
-            dotToLine={false}
+            dotToLine
           />
         </g>
       </svg>
@@ -104,4 +101,4 @@ const Iris = () => {
   );
 };
 
-export default Iris;
+export default LineChart;
