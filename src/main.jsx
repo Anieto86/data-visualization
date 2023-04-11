@@ -10,7 +10,8 @@ import {
   MouseFollower,
   SmileyFace,
   SmileyFaceTweak,
-  LineChart
+  LineChart,
+  WorldMap
 } from './Pages';
 import Root from './routes/root';
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
   { path: '/CountryPopulation', element: <CountryPopulation /> },
   { path: '/Iris', element: <Iris /> },
   { path: '/LineChart', element: <LineChart /> },
+  { path: '/WorldMap', element: <WorldMap /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

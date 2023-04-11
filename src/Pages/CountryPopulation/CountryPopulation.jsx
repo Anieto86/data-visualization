@@ -1,19 +1,31 @@
 import * as d3 from 'd3';
-import { useData } from '../../hooks';
+import { useFetch } from '../../hooks';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
 import AxisLeft from '../../components/AxisLeft/AxisLeft';
 import Marks from '../../components/Marks/Marks';
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const CountryPopulation = () => {
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/7e41de1aa3c479125dc9ffbf78e6e7bf/raw/UN_Population_2019.csv`;
 
-  const { csvData } = useData(CSVURL);
+  const { data, loading, error, setData } = useFetch(CSVURL);
 
-  if (!csvData) return <div>Loading...</div>;
+  useEffect(() => {
+    const row = (d) => {
+      d.Population = +d['2020'] * 1000;
+      return d;
+    };
 
-  const topTenCountries = csvData.slice(0, 10);
+    d3.csv(CSVURL, row).then(setData);
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+
+  const topTenCountries = data.slice(0, 10);
 
   const width = 1000;
   const height = 500;

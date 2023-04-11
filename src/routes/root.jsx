@@ -25,6 +25,9 @@ export default function Root() {
             <li>
               <Link to={`LineChart`}>Line Chart</Link>
             </li>
+            <li>
+              <Link to={`WorldMap`}>World Map</Link>
+            </li>
           </ul>
         </nav>
 

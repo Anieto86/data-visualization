@@ -6,3 +6,4 @@ export * from './Eyes/Eyes';
 export { default as Marks } from './Marks/Marks';
 export * from './Mouth';
 export { default as PlotMarks } from './PlotMarks/PlotMarks';
+export { default as WorldMarks } from './WorldMarks/WorldMarks';

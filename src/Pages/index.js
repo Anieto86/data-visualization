@@ -5,3 +5,4 @@ export { default as LineChart } from './LineChart/LineChart';
 export { default as MouseFollower } from './MouseFollower/MouseFollower';
 export { default as SmileyFace } from './SmileyFace/SmileyFace';
 export { default as SmileyFaceTweak } from './SmileyFaceTweak/SmileyFaceTweak';
+export { default as WorldMap } from './WorldMap/WorldMap';
