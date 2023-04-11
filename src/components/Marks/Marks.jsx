@@ -4,7 +4,6 @@ const Marks = ({ csvData, xScale, yScale, yValue, xValue ,tickFormat }) =>
     return (
       <g className='marks'>
       <rect
-      
         key={yValue(d)}
         x={0}
         y={yScale(yValue(d))}

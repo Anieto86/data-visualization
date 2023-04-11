@@ -15,11 +15,10 @@ const PlotMarks = ({
     {dotToLine ? (
       <g className='marks'>
         <path
-            d={line()
+          d={line()
             .x((d) => xScale(xValue(d)))
             .y((d) => yScale(yValue(d)))
             .curve(curveNatural)(data)}
-          
         />
       </g>
     ) : (

@@ -2,6 +2,7 @@ import React from 'react';
 import { BackgroundCircle } from '../../components/BackgroundCircle/BackgroundCircle';
 import { Eyes } from '../../components/Eyes/Eyes';
 import { Mouth } from '../../components/Mouth/Mouth';
+import { Link } from 'react-router-dom';
 
 const SmileyFace = () => {
   const width = 250;
@@ -17,7 +18,7 @@ const SmileyFace = () => {
   const mouthRadius = 70 + Math.random() * 10;
 
   return (
-    
+    <>
       <svg width={width} height={height}>
         <g transform={`translate(${centerX}, ${centerY})`}>
           <BackgroundCircle radius={radius} strokeWidth={strokeWidth} />
@@ -29,7 +30,10 @@ const SmileyFace = () => {
           <Mouth mouthWidth={mouthWidth} mouthRadius={mouthRadius} />
         </g>
       </svg>
-  
+      {/* <Link to={'/'} className='iris-button'>
+        <button className='iris-button-style'>Go Back</button>
+      </Link> */}
+      </>
   );
 };
 

@@ -1,4 +1,5 @@
 import { arc } from 'd3';
+import { Link } from 'react-router-dom';
 
 const SmileyFaceTweak = () => {
   const width = 500;
@@ -22,31 +23,36 @@ const SmileyFaceTweak = () => {
   //svg elipse, line, rects , grafient
 
   return (
-    <svg width={width} height={height}>
-      <g transform={`translate(${centerX}, ${centerY})`}>
-        <circle
-          r={radius}
-          fill='yellow'
-          stroke='black'
-          stroke-width={strokeWidth}
-        />
-        {/* <rect width='100%' height='100%' fill='red' stroke-width="5"/> */}
-        <ellipse
-          cx='75'
-          cy='75'
-          rx='20'
-          ry='5'
-          stroke='red'
-          fill='red'
-          stroke-width='5'
-        />
+    <>
+      <svg width={width} height={height}>
+        <g transform={`translate(${centerX}, ${centerY})`}>
+          <circle
+            r={radius}
+            fill='yellow'
+            stroke='black'
+            stroke-width={strokeWidth}
+          />
+          {/* <rect width='100%' height='100%' fill='red' stroke-width="5"/> */}
+          <ellipse
+            cx='75'
+            cy='75'
+            rx='20'
+            ry='5'
+            stroke='red'
+            fill='red'
+            stroke-width='5'
+          />
 
-        <circle cx={-eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
+          <circle cx={-eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
 
-        <circle cx={+eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
-        <path d={mouthArc()} />
-      </g>
-    </svg>
+          <circle cx={+eyesOffsetX} cy={-eyesOffsetY} r={eyesRadius} />
+          <path d={mouthArc()} />
+        </g>
+      </svg>
+      <Link to={'/'} className='iris-button'>
+        <button className='iris-button-style'>Go Back</button>
+      </Link>
+    </>
   );
 };
 

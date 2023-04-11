@@ -8,7 +8,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 
 const LineChart = () => {
-  const CSVURL = `https://gist.githubusercontent.com/curran/90240a6d88bdb1411467b21ea0769029/raw/7d4c3914cc6a29a7f5165f7d5d82b735d97bcfe4/week_temperature_sf.csv`;
+  const CSVURL = `https://gist.githubusercontent.com/curran/90240a6d88bdb1411467b21ea0769029/raw/week_temperature_sf.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
 
