@@ -1,15 +1,23 @@
-import { geoEqualEarth, geoPath } from 'd3';
+import { geoNaturalEarth1, geoPath, geoGraticule } from 'd3';
 import './style.css';
 
-const projection = geoEqualEarth();
+const projection = geoNaturalEarth1();
 const path = geoPath(projection);
+const graticule = geoGraticule();
 
 const WorldMarks = ({ data }) => {
+  const { countries, interiors } = data || {};
   return (
     <g className='marks-world'>
-      {data.features?.map((feature, i) => (
-        <path d={path(feature)} key={i} />
+      <path className='country' d={path({ type: 'Sphere' })} />
+      <path className='graticules' d={path(graticule())} />
+      {countries.features?.map((feature, i) => (
+        <g key={i}>
+          <path d={path(feature)} />
+          <title>{feature.properties.name}</title>
+        </g>
       ))}
+      <path className='interiors' d={path(interiors)} />
     </g>
   );
 };

@@ -1,5 +1,21 @@
-.marks-world{
-  fill:#684664;
-  stroke: #E25A42;
-  stroke-width:0.5px;
+.marks-world {
+  fill: #684664;
+  /* stroke: #E25A42;
+  stroke-width: 0.5px; */
+}
+
+.marks-world .country {
+  fill: #fbeace
+}
+
+.marks-world .interiors {
+  fill: none;
+  stroke: rgb(0, 225, 255);
+  stroke-width: 0.5px;
+}
+
+.marks-world .graticules {
+  fill: none;
+  stroke: hsla(180, 2%, 9%, 0.525);
+  stroke-width: 0.5px;
 }
