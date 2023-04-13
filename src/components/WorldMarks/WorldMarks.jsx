@@ -9,11 +9,11 @@ const WorldMarks = ({ data }) => {
   const { countries, interiors } = data || {};
   return (
     <g className='marks-world'>
-      <path className='country' d={path({ type: 'Sphere' })} />
+      <path className='sphere' d={path({ type: 'Sphere' })} />
       <path className='graticules' d={path(graticule())} />
       {countries.features?.map((feature, i) => (
         <g key={i}>
-          <path d={path(feature)} />
+          <path className='land ' d={path(feature)} />
           <title>{feature.properties.name}</title>
         </g>
       ))}

@@ -1,16 +1,15 @@
 .marks-world {
   fill: #684664;
-  /* stroke: #E25A42;
-  stroke-width: 0.5px; */
+
 }
 
-.marks-world .country {
+.marks-world .sphere {
   fill: #fbeace
 }
 
 .marks-world .interiors {
   fill: none;
-  stroke: rgb(0, 225, 255);
+  stroke: #00e1ff;
   stroke-width: 0.5px;
 }
 
@@ -18,4 +17,11 @@
   fill: none;
   stroke: hsla(180, 2%, 9%, 0.525);
   stroke-width: 0.5px;
+}
+
+
+/*hovering the countries and defining color when hovered*/
+.marks-world .land:hover {
+  fill: #00e1ff;
+  ;
 }

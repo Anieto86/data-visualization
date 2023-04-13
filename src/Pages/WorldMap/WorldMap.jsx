@@ -16,14 +16,14 @@ const WorldMap = () => {
   const height = 500;
 
   return (
-    <div>
+    <>
       <svg width={width} height={height}>
         <WorldMarks data={data} />
       </svg>
       <Link to={'/'} className='iris-button'>
         <button className='iris-button-style'>Go Back</button>
       </Link>
-    </div>
+    </>
   );
 };
 
