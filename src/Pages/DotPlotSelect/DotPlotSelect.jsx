@@ -1,13 +1,55 @@
 import { csv, extent, format, scaleLinear } from 'd3';
-import { useEffect } from 'react';
-import { useFetch } from '../../hooks';
-import AxisBottom from '../../components/AxisBottom/AxisBottom';
-import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
-import PlotMarks from '../../components/PlotMarks/PlotMarks';
-import './style.css';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  AxisBottom,
+  AxisLeftPlot,
+  PlotMarks,
+  Dropdown,
+} from '../../components';
+import { useFetch } from '../../hooks';
+import './style.css';
 
-const Iris = () => {
+const options = [
+  {
+    value: 'javascript',
+    label: 'JavaScript',
+  },
+  {
+    value: 'PHP',
+    label: 'PHP',
+  },
+  {
+    value: 'java',
+    label: 'Java',
+  },
+  {
+    value: 'golang',
+    label: 'Golang',
+  },
+  {
+    value: 'python',
+    label: 'Python',
+  },
+  {
+    value: 'C#',
+    label: 'C#',
+  },
+  {
+    value: 'C++',
+    label: 'C++',
+  },
+  {
+    value: 'erlang',
+    label: 'Erlang',
+  },
+];
+
+const initialXValue = 'JavaScript';
+
+const DotPlotSelect = () => {
+  const [selectXValue, setSelectXValue] = useState();
+
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/25c944aa3804c9b498b4e4b973f11fea/raw/iris.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
@@ -34,13 +76,14 @@ const Iris = () => {
   const innerHeight = height - margin.top - margin.bottom;
   const xAxisLabelOffset = 50;
   const yAxisLabelOffset = 40;
+
   // const tickOffset =
 
   const yValue = (d) => d.sepal_width;
   const xValue = (d) => d.sepal_length;
 
-  const xAxisLabel = 'Sepal length';
-  const yAxisLabel = 'Sepal Width';
+  const xAxisLabel = 'Sepal lengthssss';
+  const yAxisLabel = 'Sepal Widthaaaaa';
 
   const xScale = scaleLinear()
     .domain(extent(data, xValue))
@@ -53,7 +96,17 @@ const Iris = () => {
     .nice();
 
   return (
-    <div>
+    <>
+      <div>
+        <label htmlFor='x-select'>X:</label>
+        <Dropdown
+          initialValue={initialXValue}
+          options={options}
+          id='x-select'
+          selectValue={selectXValue}
+          onSelectValue={setSelectXValue}
+        />
+      </div>
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <AxisBottom
@@ -85,7 +138,6 @@ const Iris = () => {
           >
             {xAxisLabel}
           </text>
-
           <PlotMarks
             data={data}
             xScale={xScale}
@@ -100,8 +152,8 @@ const Iris = () => {
       <Link to={'/'} className='iris-button'>
         <button className='iris-button-style'>Go Back</button>
       </Link>
-    </div>
+    </>
   );
 };
 
-export default Iris;
+export default DotPlotSelect;

@@ -6,12 +6,13 @@ import './index.css';
 import {
   CountryPopulation,
   CssNamedColors,
-  Iris,
+  DotPlot,
   MouseFollower,
   SmileyFace,
   SmileyFaceTweak,
   LineChart,
-  WorldMap
+  WorldMap,
+  DotPlotSelect,
 } from './Pages';
 import Root from './routes/root';
 
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
   { path: '/MouseFollower', element: <MouseFollower /> },
   { path: '/CssNamedColors', element: <CssNamedColors /> },
   { path: '/CountryPopulation', element: <CountryPopulation /> },
-  { path: '/Iris', element: <Iris /> },
+  { path: '/DotPlot', element: <DotPlot /> },
+  { path: '/DotPlotSelect', element: <DotPlotSelect /> },
   { path: '/LineChart', element: <LineChart /> },
   { path: '/WorldMap', element: <WorldMap /> },
 ]);
