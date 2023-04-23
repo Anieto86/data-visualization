@@ -69,8 +69,8 @@ const DotPlot = () => {
             tickOffset={5}
           />
           <text
-            className='axis-label'
-            textAnchor='middle'
+            className="axis-label"
+            textAnchor="middle"
             transform={` translate(${-yAxisLabelOffset}, ${
               innerHeight / 2
             })rotate(-90)`}
@@ -78,8 +78,8 @@ const DotPlot = () => {
             {yAxisLabel}
           </text>
           <text
-            className='axis-label'
-            textAnchor='middle'
+            className="axis-label"
+            textAnchor="middle"
             x={innerWidth / 2}
             y={innerHeight + xAxisLabelOffset}
           >
@@ -97,9 +97,6 @@ const DotPlot = () => {
           />
         </g>
       </svg>
-      <Link to={'/'} className='iris-button'>
-        <button className='iris-button-style'>Go Back</button>
-      </Link>
     </div>
   );
 };

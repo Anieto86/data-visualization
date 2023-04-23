@@ -20,31 +20,25 @@ const CssNamedColors = () => {
 
   const message = `Number of rows: ${data.length}, Number of columns: ${
     data.columns.length
-  }, 
+  },
    Data size ${Math.round(data?.length / 1024) + ' KB'}`;
 
   return (
     <React.Fragment>
       <h2>Css Named Colors Render data with React and D3</h2>
-      <pre id='message-container'>{message}</pre>
+      <pre id="message-container">{message}</pre>
       <svg width={width} height={height}>
         <g transform={`translate(${centerX}, ${centerY})`}>
           {colorPie(data).map((d, i) => {
-          
             return (
               <g key={i}>
-              <path key={i} fill={d.data['RGB hex value']} d={pieArc(d)} />
-              <title>{d.data['Keyword']}</title>
+                <path key={i} fill={d.data['RGB hex value']} d={pieArc(d)} />
+                <title>{d.data['Keyword']}</title>
               </g>
             );
-            
           })}
         </g>
-     
       </svg>
-      <Link to={'/'} className='iris-button'>
-        <button className='iris-button-style'>Go Back</button>
-      </Link>
     </React.Fragment>
   );
 };

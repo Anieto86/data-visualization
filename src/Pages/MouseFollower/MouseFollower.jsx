@@ -30,9 +30,6 @@ const MouseFollower = () => {
       >
         <circle cx={mousePosition.x} cy={mousePosition.y} r={radius} />
       </svg>
-      <Link to={'/'} className='iris-button'>
-        <button className='iris-button-style'>Go Back</button>
-      </Link>
     </React.Fragment>
   );
 };

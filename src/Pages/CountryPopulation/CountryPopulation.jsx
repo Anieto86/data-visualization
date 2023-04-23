@@ -24,7 +24,6 @@ const CountryPopulation = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-
   const topTenCountries = data.slice(0, 10);
 
   const width = 1000;
@@ -59,8 +58,8 @@ const CountryPopulation = () => {
           />
           <AxisLeft yScale={yScale} />
           <text
-            className='axis-label'
-            textAnchor='middle'
+            className="axis-label"
+            textAnchor="middle"
             x={innerWidth / 2}
             y={innerHeight + axisBottomOffset}
           >
@@ -76,9 +75,6 @@ const CountryPopulation = () => {
           />
         </g>
       </svg>
-      <Link to={'/'} className='iris-button'>
-        <button className='iris-button-style'>Go Back</button>
-      </Link>
     </>
   );
 };

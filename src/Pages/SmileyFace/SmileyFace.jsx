@@ -30,10 +30,7 @@ const SmileyFace = () => {
           <Mouth mouthWidth={mouthWidth} mouthRadius={mouthRadius} />
         </g>
       </svg>
-      {/* <Link to={'/'} className='iris-button'>
-        <button className='iris-button-style'>Go Back</button>
-      </Link> */}
-      </>
+    </>
   );
 };
 
