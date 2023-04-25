@@ -1,4 +1,5 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import { Outlet, NavLink } from 'react-router-dom';
 
 export default function Root() {
   return (
@@ -7,44 +8,40 @@ export default function Root() {
         <nav>
           <ul>
             <li>
-              <Link to={`SmileyFaceTweak`}>SmileyFaceTweak</Link>
+              <NavLink to={`SmileyFaceTweak`}>SmileyFaceTweak</NavLink>
             </li>
             <li>
-              <Link to={`SmileyFace`}>SmileyFace</Link>
+              <NavLink to={`SmileyFace`}>SmileyFace</NavLink>
             </li>
             <li>
-              <Link to={`MouseFollower`}>MouseFollower</Link>
+              <NavLink to={`MouseFollower`}>MouseFollower</NavLink>
             </li>
             <li>
-              <Link to={`CssNamedColors`}>CssNamedColors</Link>
+              <NavLink to={`CssNamedColors`}>CssNamedColors</NavLink>
             </li>
             <li>
-              <Link to={`CountryPopulation`}>CountryPopulation</Link>
+              <NavLink to={`WorldMap`}>World Map</NavLink>
             </li>
             <li>
-              <Link to={`DotPlot`}>DotPlot Iris</Link>
+              <NavLink to={`CountryPopulation`}>CountryPopulation</NavLink>
             </li>
             <li>
-              <Link to={`DotPlotSelect`}>DotPlot Select</Link>
+              <NavLink to={`DotPlot`}>DotPlot Iris</NavLink>
             </li>
             <li>
-              <Link to={`LineChart`}>Line Chart</Link>
+              <NavLink to={`DotPlotSelect`}>DotPlot Select</NavLink>
             </li>
             <li>
-              <Link to={`WorldMap`}>World Map</Link>
+              <NavLink to={`LineChart`}>Line Chart</NavLink>
             </li>
           </ul>
         </nav>
       </div>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}
-      >
-        <Outlet />
-      </div>
+      <Grid container direction="row" justifyContent="center" sx={{ p: 4 }}>
+        <Grid item>
+          <Outlet />
+        </Grid>
+      </Grid>
     </>
   );
 }

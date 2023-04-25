@@ -4,7 +4,6 @@ import AxisBottom from '../../components/AxisBottom/AxisBottom';
 import AxisLeft from '../../components/AxisLeft/AxisLeft';
 import Marks from '../../components/Marks/Marks';
 import './styles.css';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const CountryPopulation = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { BackgroundCircle } from '../../components/BackgroundCircle/BackgroundCircle';
 import { Eyes } from '../../components/Eyes/Eyes';
 import { Mouth } from '../../components/Mouth/Mouth';
-import { Link } from 'react-router-dom';
 
 const SmileyFace = () => {
   const width = 250;
