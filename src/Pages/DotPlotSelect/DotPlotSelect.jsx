@@ -6,6 +6,7 @@ import {
   AxisLeftPlot,
   Dropdown,
   PlotMarks,
+  ColorLegend,
 } from '../../components';
 import { useFetch } from '../../hooks';
 import './style.css';
@@ -146,6 +147,7 @@ const DotPlotSelect = () => {
             tickFormat={format('.2s')}
             dotToLine={false}
           />
+          <ColorLegend colorScale={colorScale} />
         </g>
       </svg>
     </Grid>

@@ -2,6 +2,7 @@ export { default as AxisBottom } from './AxisBottom/AxisBottom';
 export { default as AxisLeft } from './AxisLeft/AxisLeft';
 export { default as AxisLeftPlot } from './AxisLeftPlot/AxisLeftPlot';
 export * from './BackgroundCircle/BackgroundCircle';
+export * from './ColorLegend/ColorLegend';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export * from './Eyes/Eyes';
 export { default as Marks } from './Marks/Marks';
