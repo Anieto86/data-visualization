@@ -1,23 +1,28 @@
+import * as React from 'react';
+
+import { Select, FormControl, MenuItem, Grid, InputLabel } from '@mui/material';
+
 import './styles.css';
 
-const Dropdown = ({ attributes, id, onSelectValue }) => {
+const Dropdown = ({ attributes, id, onSelectValue, label }) => {
   const handleSelect = (e) => {
     onSelectValue(e.target.value);
   };
 
   return (
-    <>
-      <select name="languages" id={id} onChange={(e) => handleSelect(e)}>
-        {attributes.map(({ value, label }) => {
-          return (
-            <option key={label} value={value}>
+    <Grid sx={{ minWidth: 200 }}>
+      <FormControl fullWidth variant="standard">
+        <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+
+        <Select name="languages" id={id} onChange={(e) => handleSelect(e)}>
+          {attributes.map(({ value, label }) => (
+            <MenuItem key={label} value={value}>
               {label}
-            </option>
-          );
-        })}
-        ;
-      </select>
-    </>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Grid>
   );
 };
 

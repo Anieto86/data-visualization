@@ -1,4 +1,4 @@
-import { csv, extent, format, scaleLinear } from 'd3';
+import { csv, extent, format, scaleLinear, scaleOrdinal } from 'd3';
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
@@ -42,6 +42,8 @@ const DotPlot = () => {
   const xAxisLabel = 'Sepal length';
   const yAxisLabel = 'Sepal Width';
 
+  const colorValue = (d) => d.species;
+
   const xScale = scaleLinear()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
@@ -51,6 +53,10 @@ const DotPlot = () => {
     .domain(extent(data, yValue))
     .range([innerHeight, 0])
     .nice();
+
+  const colorScale = scaleOrdinal()
+    .domain(data.map(colorValue))
+    .range(['#E6842A', '#137B80', '#8E6C8A']);
 
   return (
     <div>
@@ -90,8 +96,10 @@ const DotPlot = () => {
             data={data}
             xScale={xScale}
             yScale={yScale}
+            colorScale={colorScale}
             yValue={yValue}
             xValue={xValue}
+            colorValue={colorValue}
             tickFormat={format('.2s')}
             dotToLine={false}
           />

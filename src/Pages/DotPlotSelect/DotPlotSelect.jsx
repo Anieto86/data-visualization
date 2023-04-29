@@ -1,11 +1,11 @@
-import { csv, extent, format, scaleLinear } from 'd3';
+import { csv, extent, format, scaleLinear, scaleOrdinal } from 'd3';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 import {
   AxisBottom,
   AxisLeftPlot,
-  PlotMarks,
   Dropdown,
+  PlotMarks,
 } from '../../components';
 import { useFetch } from '../../hooks';
 import './style.css';
@@ -18,7 +18,6 @@ const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 const xAxisLabelOffset = 50;
 const yAxisLabelOffset = 40;
-// const tickOffset =
 
 const attributes = [
   { value: 'sepal_length', label: 'Sepal Length' },
@@ -43,6 +42,8 @@ const DotPlotSelect = () => {
   const [yAttribute, setYAttribute] = useState(initialYAttribute);
   const yValue = (d) => d[yAttribute];
   const yAxisLabel = getLabel(yAttribute);
+
+  const colorValue = (d) => d.species;
 
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/25c944aa3804c9b498b4e4b973f11fea/raw/iris.csv`;
 
@@ -72,26 +73,37 @@ const DotPlotSelect = () => {
     .range([0, innerHeight])
     .nice();
 
+  const colorScale = scaleOrdinal()
+    .domain(data.map(colorValue))
+    .range(['#E6842A', '#137B80', '#8E6C8A']);
+
   return (
-    <>
-      <div>
-        <label htmlFor="x-select">X:</label>
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      alignItems="center"
+      spacing={6}
+      sx={{ minWidth: 120 }}
+    >
+      <Grid item sx={{ mx: 3 }}>
         <Dropdown
-          attributes={attributes}
-          id="x-select"
-          selectValue={xAttribute}
-          onSelectValue={setXAttribute}
-        />
-      </div>
-      <div>
-        <label htmlFor="x-select">Y:</label>
-        <Dropdown
+          label={' Y Axis'}
           attributes={attributes}
           id="y-select"
           selectValue={yAttribute}
           onSelectValue={setYAttribute}
         />
-      </div>
+      </Grid>
+      <Grid item sx={{ mx: 3 }}>
+        <Dropdown
+          label={'X Axis'}
+          attributes={attributes}
+          id="x-select"
+          selectValue={xAttribute}
+          onSelectValue={setXAttribute}
+        />
+      </Grid>
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <AxisBottom
@@ -127,14 +139,16 @@ const DotPlotSelect = () => {
             data={data}
             xScale={xScale}
             yScale={yScale}
+            colorScale={colorScale}
             yValue={yValue}
             xValue={xValue}
+            colorValue={colorValue}
             tickFormat={format('.2s')}
             dotToLine={false}
           />
         </g>
       </svg>
-    </>
+    </Grid>
   );
 };
 

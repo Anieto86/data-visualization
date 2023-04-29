@@ -10,10 +10,12 @@ const PlotMarks = ({
   xValue,
   tickFormat,
   dotToLine,
+  colorScale,
+  colorValue,
 }) => (
   <React.Fragment>
     {dotToLine ? (
-      <g className='marks'>
+      <g className="marks">
         <path
           d={line()
             .x((d) => xScale(xValue(d)))
@@ -22,9 +24,15 @@ const PlotMarks = ({
         />
       </g>
     ) : (
-      <g className='marks'>
+      <g className="marks">
         {data?.map((d, i) => (
-          <circle key={i} cx={xScale(xValue(d))} cy={yScale(yValue(d))} r={4}>
+          <circle
+            key={i}
+            cx={xScale(xValue(d))}
+            cy={yScale(yValue(d))}
+            r={9}
+            fill={colorScale(colorValue(d))}
+          >
             <title>{tickFormat(xValue(d))}</title>
           </circle>
         ))}
