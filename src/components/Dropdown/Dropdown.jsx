@@ -4,7 +4,7 @@ import { Select, FormControl, MenuItem, Grid, InputLabel } from '@mui/material';
 
 import './styles.css';
 
-const Dropdown = ({ attributes, id, onSelectValue, label }) => {
+const Dropdown = ({ attributes, id, onSelectValue, label, defaultValue }) => {
   const handleSelect = (e) => {
     onSelectValue(e.target.value);
   };
@@ -13,8 +13,12 @@ const Dropdown = ({ attributes, id, onSelectValue, label }) => {
     <Grid sx={{ minWidth: 200 }}>
       <FormControl fullWidth variant="standard">
         <InputLabel id="demo-simple-select-label">{label}</InputLabel>
-
-        <Select name="languages" id={id} onChange={(e) => handleSelect(e)}>
+        <Select
+          name="languages"
+          id={id}
+          onChange={(e) => handleSelect(e)}
+          defaultValue={defaultValue}
+        >
           {attributes.map(({ value, label }) => (
             <MenuItem key={label} value={value}>
               {label}
