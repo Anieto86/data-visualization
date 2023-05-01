@@ -17,19 +17,17 @@ const SmileyFace = () => {
   const mouthRadius = 70 + Math.random() * 10;
 
   return (
-    <>
-      <svg width={width} height={height}>
-        <g transform={`translate(${centerX}, ${centerY})`}>
-          <BackgroundCircle radius={radius} strokeWidth={strokeWidth} />
-          <Eyes
-            eyesOffsetY={eyesOffsetY}
-            eyesRadius={eyesRadius}
-            eyesOffsetX={eyesOffsetX}
-          />
-          <Mouth mouthWidth={mouthWidth} mouthRadius={mouthRadius} />
-        </g>
-      </svg>
-    </>
+    <svg width={width} height={height}>
+      <g transform={`translate(${centerX}, ${centerY})`}>
+        <BackgroundCircle radius={radius} strokeWidth={strokeWidth} />
+        <Eyes
+          eyesOffsetY={eyesOffsetY}
+          eyesRadius={eyesRadius}
+          eyesOffsetX={eyesOffsetX}
+        />
+        <Mouth mouthWidth={mouthWidth} mouthRadius={mouthRadius} />
+      </g>
+    </svg>
   );
 };
 

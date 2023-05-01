@@ -10,7 +10,7 @@ import {
   timeFormat,
   timeMonths,
 } from 'd3';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
 import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
 import BinMarks from '../../components/BinMarks/BinMarks';
@@ -23,8 +23,10 @@ const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 const xAxisLabelOffset = 70;
 const yAxisLabelOffset = 40;
+const yAxisLabel = 'Total Dead and Missing';
+const xAxisLabel = 'Time';
 
-const LineChart = () => {
+const Histogram = () => {
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/5d0d0b7f243b7f55fd9b5ff6ba483664/raw/MissingMigrants-Global-2019-10-08T09-47-14-subset.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
@@ -43,11 +45,9 @@ const LineChart = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   const xValue = (d) => d['Reported Date'];
-  const xAxisLabel = 'Time';
-
   const yValue = (d) => d['Total Dead and Missing'];
-  const yAxisLabel = 'Total Dead and Missing';
 
+  //usamos useMemo para optimizar la carga de data. xScale carga una vez
   const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
@@ -118,4 +118,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default Histogram;

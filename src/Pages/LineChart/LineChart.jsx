@@ -6,7 +6,7 @@ import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
 import PlotMarks from '../../components/PlotMarks/PlotMarks';
 import './style.css';
 
-const MissingMigrantsLineChart = () => {
+const Histogram = () => {
   const CSVURL = `https://gist.githubusercontent.com/curran/90240a6d88bdb1411467b21ea0769029/raw/week_temperature_sf.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
@@ -98,4 +98,4 @@ const MissingMigrantsLineChart = () => {
   );
 };
 
-export default MissingMigrantsLineChart;
+export default Histogram;

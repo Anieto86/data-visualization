@@ -26,18 +26,16 @@ export default function Root() {
               <NavLink to={`CountryPopulation`}>CountryPopulation</NavLink>
             </li>
             <li>
-              <NavLink to={`DotPlot`}>DotPlot Iris</NavLink>
+              <NavLink to={`DotPlot`}>DotPlot</NavLink>
             </li>
             <li>
-              <NavLink to={`DotPlotSelect`}>DotPlot Select</NavLink>
+              <NavLink to={`DotPlotSelect`}>DotPlot with Select</NavLink>
             </li>
             <li>
               <NavLink to={`LineChart`}>Line Chart</NavLink>
             </li>
             <li>
-              <NavLink to={`MissingMigrantsLineChart`}>
-                Missing Migrants LineChart
-              </NavLink>
+              <NavLink to={`Histogram`}>Histogram</NavLink>
             </li>
           </ul>
         </nav>
