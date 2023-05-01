@@ -30,8 +30,8 @@ const PlotMarks = ({
             key={i}
             cx={xScale(xValue(d))}
             cy={yScale(yValue(d))}
-            r={9}
-            fill={colorScale(colorValue(d))}
+            r={5}
+            fill={dotToLine ? colorScale(colorValue(d)) : 'red'}
           >
             <title>{tickFormat(xValue(d))}</title>
           </circle>

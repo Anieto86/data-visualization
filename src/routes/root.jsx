@@ -34,6 +34,11 @@ export default function Root() {
             <li>
               <NavLink to={`LineChart`}>Line Chart</NavLink>
             </li>
+            <li>
+              <NavLink to={`MissingMigrantsLineChart`}>
+                Missing Migrants LineChart
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

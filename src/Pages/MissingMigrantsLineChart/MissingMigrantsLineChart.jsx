@@ -1,4 +1,4 @@
-import { csv, extent, format, scaleLinear, scaleOrdinal } from 'd3';
+import { csv, extent, format, scaleLinear, scaleTime, timeFormat } from 'd3';
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
@@ -6,17 +6,15 @@ import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
 import PlotMarks from '../../components/PlotMarks/PlotMarks';
 import './style.css';
 
-const DotPlot = () => {
-  const CSVURL = `https://gist.githubusercontent.com/Anieto86/25c944aa3804c9b498b4e4b973f11fea/raw/iris.csv`;
+const LineChart = () => {
+  const CSVURL = `https://gist.githubusercontent.com/Anieto86/5d0d0b7f243b7f55fd9b5ff6ba483664/raw/MissingMigrants-Global-2019-10-08T09-47-14-subset.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
 
   useEffect(() => {
     const row = (d) => {
-      d.sepal_length = +d.sepal_length;
-      d.sepal_width = +d.sepal_width;
-      d.petal_length = +d.petal_length;
-      d.petal_width = +d.petal_width;
+      d['Total Dead and Missing'] = +d['Total Dead and Missing'];
+      d['Reported Date'] = new Date(d['Reported Date']);
       return d;
     };
 
@@ -26,24 +24,23 @@ const DotPlot = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  console.table(data[0]);
+
   const width = 1000;
   const height = 500;
-  const margin = { top: 20, right: 30, bottom: 60, left: 90 };
+  const margin = { top: 20, right: 30, bottom: 90, left: 90 };
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
-  const xAxisLabelOffset = 50;
+  const xAxisLabelOffset = 70;
   const yAxisLabelOffset = 40;
-  // const tickOffset =
 
-  const yValue = (d) => d.sepal_width;
-  const xValue = (d) => d.sepal_length;
+  const xValue = (d) => d['Reported Date'];
+  const xAxisLabel = 'Time';
 
-  const xAxisLabel = 'Sepal length';
-  const yAxisLabel = 'Sepal Width';
+  const yValue = (d) => d['Total Dead and Missing'];
+  const yAxisLabel = 'Total Dead and Missing';
 
-  const colorValue = (d) => d.species;
-
-  const xScale = scaleLinear()
+  const xScale = scaleTime()
     .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice();
@@ -53,10 +50,6 @@ const DotPlot = () => {
     .range([innerHeight, 0])
     .nice();
 
-  const colorScale = scaleOrdinal()
-    .domain(data.map(colorValue))
-    .range(['#E6842A', '#137B80', '#8E6C8A']);
-
   return (
     <div>
       <svg width={width} height={height}>
@@ -64,15 +57,10 @@ const DotPlot = () => {
           <AxisBottom
             xScale={xScale}
             innerHeight={innerHeight}
-            tickFormat={format('.2s')}
-            tickOffset={5}
+            tickFormat={timeFormat('%m/%d/%Y')}
+            tickOffset={9}
           />
-          <AxisLeftPlot
-            yScale={yScale}
-            innerWidth={innerWidth}
-            yAxisLabel={yAxisLabel}
-            tickOffset={5}
-          />
+
           <text
             className="axis-label"
             textAnchor="middle"
@@ -82,6 +70,12 @@ const DotPlot = () => {
           >
             {yAxisLabel}
           </text>
+          <AxisLeftPlot
+            yScale={yScale}
+            innerWidth={innerWidth}
+            yAxisLabel={yAxisLabel}
+            tickOffset={5}
+          />
           <text
             className="axis-label"
             textAnchor="middle"
@@ -90,7 +84,6 @@ const DotPlot = () => {
           >
             {xAxisLabel}
           </text>
-
           <PlotMarks
             data={data}
             xScale={xScale}
@@ -98,8 +91,6 @@ const DotPlot = () => {
             yValue={yValue}
             xValue={xValue}
             tickFormat={format('.2s')}
-            colorValue={colorValue}
-            colorScale={colorScale}
             dotToLine={false}
           />
         </g>
@@ -108,4 +99,4 @@ const DotPlot = () => {
   );
 };
 
-export default DotPlot;
+export default LineChart;

@@ -3,6 +3,7 @@ export { default as CssNamedColors } from './CssNamedColors/CssNamedColors';
 export { default as DotPlot } from './DotPlot/DotPlot';
 export { default as DotPlotSelect } from './DotPlotSelect/DotPlotSelect';
 export { default as LineChart } from './LineChart/LineChart';
+export { default as MissingMigrantsLineChart } from './MissingMigrantsLineChart/MissingMigrantsLineChart';
 export { default as MouseFollower } from './MouseFollower/MouseFollower';
 export { default as SmileyFace } from './SmileyFace/SmileyFace';
 export { default as SmileyFaceTweak } from './SmileyFaceTweak/SmileyFaceTweak';

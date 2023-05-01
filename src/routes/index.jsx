@@ -9,6 +9,7 @@ import {
   SmileyFace,
   SmileyFaceTweak,
   WorldMap,
+  MissingMigrantsLineChart,
 } from '../Pages';
 import ErrorPage from './ErrorPage';
 import Root from '../routes/root';
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       { path: '/DotPlotSelect', element: <DotPlotSelect /> },
       { path: '/LineChart', element: <LineChart /> },
       { path: '/WorldMap', element: <WorldMap /> },
+      {
+        path: '/MissingMigrantsLineChart',
+        element: <MissingMigrantsLineChart />,
+      },
     ],
   },
 ]);

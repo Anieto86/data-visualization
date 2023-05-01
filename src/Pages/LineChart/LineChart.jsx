@@ -5,9 +5,8 @@ import AxisBottom from '../../components/AxisBottom/AxisBottom';
 import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
 import PlotMarks from '../../components/PlotMarks/PlotMarks';
 import './style.css';
-import { Link } from 'react-router-dom';
 
-const LineChart = () => {
+const MissingMigrantsLineChart = () => {
   const CSVURL = `https://gist.githubusercontent.com/curran/90240a6d88bdb1411467b21ea0769029/raw/week_temperature_sf.csv`;
 
   const { data, loading, error, setData } = useFetch(CSVURL);
@@ -98,4 +97,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default MissingMigrantsLineChart;
