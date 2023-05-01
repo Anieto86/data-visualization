@@ -89,6 +89,7 @@ const MissingMigrantsLineChart = () => {
             yValue={yValue}
             xValue={xValue}
             tickFormat={format('.2s')}
+            dotColor
             dotToLine
           />
         </g>

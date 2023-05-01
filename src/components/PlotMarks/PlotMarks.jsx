@@ -12,6 +12,7 @@ const PlotMarks = ({
   dotToLine,
   colorScale,
   colorValue,
+  colorDots,
 }) => (
   <React.Fragment>
     {dotToLine ? (
@@ -31,7 +32,7 @@ const PlotMarks = ({
             cx={xScale(xValue(d))}
             cy={yScale(yValue(d))}
             r={5}
-            fill={dotToLine ? colorScale(colorValue(d)) : 'red'}
+            fill={colorDots ? colorScale(colorValue(d)) : 'red'}
           >
             <title>{tickFormat(xValue(d))}</title>
           </circle>

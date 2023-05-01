@@ -164,6 +164,7 @@ const DotPlotSelect = () => {
                 colorValue={colorValue}
                 tickFormat={format('.2s')}
                 dotToLine={false}
+                colorDots
               />
             </g>
             <PlotMarks
@@ -176,6 +177,7 @@ const DotPlotSelect = () => {
               colorValue={colorValue}
               tickFormat={format('.2s')}
               dotToLine={false}
+              colorDots
             />
             <g transform={`translate(${innerWidth + 60}, 60)`}>
               <text x={35} y={-25} className="axis-label" textAnchor="middle">

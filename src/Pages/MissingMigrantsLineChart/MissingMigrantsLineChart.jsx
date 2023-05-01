@@ -1,10 +1,28 @@
-import { csv, extent, format, scaleLinear, scaleTime, timeFormat } from 'd3';
+import {
+  bin,
+  csv,
+  extent,
+  format,
+  max,
+  scaleLinear,
+  scaleTime,
+  sum,
+  timeFormat,
+  timeMonths,
+} from 'd3';
 import { useEffect } from 'react';
-import { useFetch } from '../../hooks';
 import AxisBottom from '../../components/AxisBottom/AxisBottom';
 import AxisLeftPlot from '../../components/AxisLeftPlot/AxisLeftPlot';
-import PlotMarks from '../../components/PlotMarks/PlotMarks';
-import './style.css';
+import BinMarks from '../../components/BinMarks/BinMarks';
+import { useFetch } from '../../hooks';
+
+const width = 1000;
+const height = 500;
+const margin = { top: 20, right: 30, bottom: 90, left: 90 };
+const innerWidth = width - margin.left - margin.right;
+const innerHeight = height - margin.top - margin.bottom;
+const xAxisLabelOffset = 70;
+const yAxisLabelOffset = 40;
 
 const LineChart = () => {
   const CSVURL = `https://gist.githubusercontent.com/Anieto86/5d0d0b7f243b7f55fd9b5ff6ba483664/raw/MissingMigrants-Global-2019-10-08T09-47-14-subset.csv`;
@@ -24,16 +42,6 @@ const LineChart = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  console.table(data[0]);
-
-  const width = 1000;
-  const height = 500;
-  const margin = { top: 20, right: 30, bottom: 90, left: 90 };
-  const innerWidth = width - margin.left - margin.right;
-  const innerHeight = height - margin.top - margin.bottom;
-  const xAxisLabelOffset = 70;
-  const yAxisLabelOffset = 40;
-
   const xValue = (d) => d['Reported Date'];
   const xAxisLabel = 'Time';
 
@@ -45,8 +53,20 @@ const LineChart = () => {
     .range([0, innerWidth])
     .nice();
 
+  const [start, stop] = xScale.domain();
+
+  const binnedData = bin()
+    .value(xValue)
+    .domain(xScale.domain())
+    .thresholds(timeMonths(start, stop))(data)
+    .map((array) => ({
+      y: sum(array, yValue),
+      x0: array.x0,
+      x1: array.x1,
+    }));
+
   const yScale = scaleLinear()
-    .domain(extent(data, yValue))
+    .domain(extent([0, max(binnedData, (d) => d.y)]))
     .range([innerHeight, 0])
     .nice();
 
@@ -84,14 +104,13 @@ const LineChart = () => {
           >
             {xAxisLabel}
           </text>
-          <PlotMarks
-            data={data}
+          <BinMarks
+            binnedData={binnedData}
             xScale={xScale}
             yScale={yScale}
-            yValue={yValue}
-            xValue={xValue}
             tickFormat={format('.2s')}
-            dotToLine={false}
+            innerHeight={innerHeight}
+            toolTipFormat={(d) => d}
           />
         </g>
       </svg>

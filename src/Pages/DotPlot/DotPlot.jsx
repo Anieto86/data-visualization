@@ -100,6 +100,7 @@ const DotPlot = () => {
             tickFormat={format('.2s')}
             colorValue={colorValue}
             colorScale={colorScale}
+            colorDots
             dotToLine={false}
           />
         </g>
