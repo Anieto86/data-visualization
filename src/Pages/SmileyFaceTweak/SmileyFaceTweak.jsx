@@ -1,5 +1,4 @@
-import { arc } from 'd3';
-import { Link } from 'react-router-dom';
+import { arc } from "d3";
 
 const SmileyFaceTweak = () => {
   const width = 500;

@@ -1,5 +1,5 @@
-import { Grid } from '@mui/material';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Grid } from "@mui/material";
+import { Outlet, NavLink } from "react-router-dom";
 
 export default function Root() {
   return (
@@ -8,25 +8,25 @@ export default function Root() {
         <nav>
           <ul>
             <li>
-              <NavLink to={`SmileyFaceTweak`}>SmileyFaceTweak</NavLink>
+              <NavLink to={`SmileyFaceTweak`}>Smiley Face Tweak</NavLink>
             </li>
             <li>
-              <NavLink to={`SmileyFace`}>SmileyFace</NavLink>
+              <NavLink to={`SmileyFace`}>Smiley Face</NavLink>
             </li>
             <li>
               <NavLink to={`MouseFollower`}>MouseFollower</NavLink>
             </li>
             <li>
-              <NavLink to={`CssNamedColors`}>CssNamedColors</NavLink>
+              <NavLink to={`CssNamedColors`}>Css Named Colors</NavLink>
             </li>
             <li>
               <NavLink to={`WorldMap`}>World Map</NavLink>
             </li>
             <li>
-              <NavLink to={`CountryPopulation`}>CountryPopulation</NavLink>
+              <NavLink to={`CountryPopulation`}>Country Population</NavLink>
             </li>
             <li>
-              <NavLink to={`DotPlot`}>DotPlot</NavLink>
+              <NavLink to={`DotPlot`}>Dot Plot</NavLink>
             </li>
             <li>
               <NavLink to={`DotPlotSelect`}>DotPlot with Select</NavLink>
